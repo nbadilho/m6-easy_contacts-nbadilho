@@ -7,6 +7,7 @@ export const RoutesMain = () => {
   return (
     <Routes>
       <Route path="/" element={<Login />} />
+      <Route path="/register" element={<Register />} />
     </Routes>
   );
 };
