@@ -3,7 +3,8 @@ import { createGlobalStyle } from "styled-components";
 
 
 export const GlobalStyle = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
 
     *{
         margin: 0;
@@ -15,6 +16,10 @@ font-family: 'Noto Sans', sans-serif;
 
     button{
         cursor: pointer;
+        font-family: 'Noto Sans', sans-serif;
+    }
+    input{
+        font-family: 'Noto Sans', sans-serif; 
     }
 
     a{
@@ -34,12 +39,15 @@ font-family: 'Noto Sans', sans-serif;
     :root {
         --color-primary: #C4DFDF;
         --color-primary-70:#ACBCFF;
+        --color-primary-200:#7790f1;
         --color-secondary:#D2E9E9;
+        --color-secondary-20:#a5cfcf;
         --color-tertiary-20:#e6fffd67;
         --color-tertiary: #E3F4F4;
+        --color-purple:#75135dba;
         --color-grey100: #333333;
         --color-grey50: #828282;
-        --color-grey20: #E0E0E0;
+        --color-grey20: #999898;
         --color-grey0: #F5F5F5; 
         --color-white: #FFFFFF;
         --colo-white-opacity60: rgba(255, 255, 255, 0.8);
@@ -57,11 +65,11 @@ font-family: 'Noto Sans', sans-serif;
         --font-size-20: 1.25rem;
         --font-size-18: 1.125rem;
         --font-size-16: 1rem;
-        --font-size-14: 0.875rem;
+        --font-size-14: 0.9rem;
         --font-size-12: 0.75rem;
 
         --radius-1: 0.5rem;
-        --radius-2: 0.25rem;
+        --radius-2: 5px;
         --radius-50:50%;
     }
 `;
