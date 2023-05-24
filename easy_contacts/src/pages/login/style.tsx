@@ -110,17 +110,3 @@ export const LinkRegister = styled(Link)`
     cursor: pointer;
   }
 `;
-
-export const ErrorText = styled.p`
-  color: red;
-  padding-left: 10px;
-  font-size: 11px;
-`;
-
-export const ErrorLoginText = styled.p`
-  color: red;
-  font-size: 13px;
-  text-align: center;
-  padding-top: 13px;
-  margin-bottom: -13px;
-`;
