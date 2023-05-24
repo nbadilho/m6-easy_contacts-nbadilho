@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 export const DivForm = styled.div`
   background-color: var(--colo-white-opacity60);
   display: flex;
-  min-height: max-content;
+  min-height: 100vh;
+  height: max-content;
   flex-direction: column;
   align-items: center;
   justify-content: center;

@@ -13,7 +13,8 @@ export const MainDiv = styled.main`
 
   > div {
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
+    height: 100%;
     display: flex;
     flex-direction: column;
   }
@@ -25,6 +26,11 @@ export const MainDiv = styled.main`
   @media (min-width: 740px) {
     > div {
       flex-direction: row;
+
+    }
+    > div > div {
+      min-height: 100vh;
+      height: 100%;
     }
   }
 `;

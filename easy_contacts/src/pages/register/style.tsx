@@ -9,10 +9,7 @@ export const DivForm = styled.div`
   justify-content: center;
   padding: 17px;
   gap: 20px;
-  min-height: 100vh;
-  padding-top: 120px;
-  padding-bottom: 130px;
-  /* margin-bottom: 200px; */
+  min-height: max-content;
   > div {
     color: var(--color-primary-200);
     margin-top: 15px;
@@ -45,6 +42,11 @@ export const DivForm = styled.div`
     background-color: white;
     outline: none;
     color: var(--color-grey50);
+  }
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
   }
   ::placeholder {
     color: var(--color-secondary-20);
@@ -80,13 +82,13 @@ export const DivForm = styled.div`
   @media (min-width: 740px) {
     width: 45%;
     justify-content: space-around;
+
     > form {
       max-width: 360px;
     }
     > div {
       text-align: center;
       padding-top: 40px;
-      /* margin-bottom: -20px; */
       display: flex;
       align-items: center;
       justify-content: center;
@@ -114,3 +116,10 @@ export const LinkLogin = styled(Link)`
     cursor: pointer;
   }
 `;
+export const ErrorText = styled.p`
+  color: red;
+  padding-left: 10px;
+  font-size: 11px;
+`;
+
+

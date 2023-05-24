@@ -8,13 +8,15 @@ export const DivPhoto = styled.div`
       rgba(117, 19, 93, 0.73)
     ),
     url(${purple});
-  height: 20%;
+    max-height: 20%;
+  height: 15%;
   display: flex;
   align-items: center;
   justify-content: center;
 
+
   @media (min-width: 740px) {
-    height: 100%;
     width: 55%;
+
   }
 `;

@@ -105,7 +105,7 @@ export function Login() {
             {errorLogin == true ? (
               <ErrorLoginText>Email ou senha incorretos</ErrorLoginText>
             ) : null}
-            <button type="submit">
+            <button type="submit" disabled={loading}>
               {loading ? (
                 <ColorRing
                   colors={[
