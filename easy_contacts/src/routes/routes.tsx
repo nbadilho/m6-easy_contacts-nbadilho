@@ -8,6 +8,7 @@ export const RoutesMain = () => {
     <Routes>
       <Route path="/" element={<Login />} />
       <Route path="/register" element={<Register />} />
+      <Route path="/contacts" element={<p>oi</p>} />
     </Routes>
   );
 };
