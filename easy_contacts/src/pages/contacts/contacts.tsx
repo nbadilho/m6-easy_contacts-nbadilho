@@ -80,6 +80,9 @@ export function ContactsHome() {
     getUser();
   }, []);
 
+  useEffect(() => {
+    getUser();
+  }, [modalEditUser]);
   function exit() {
     localStorage.removeItem("@token_user");
     navigate("/");

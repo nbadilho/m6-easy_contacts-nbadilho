@@ -15,3 +15,5 @@ export const registerSchema = z.object({
     .max(13, 'O telefone deve ter no máximo 13 caracteres'),})
 
 export type RegisterInfo = z.infer<typeof registerSchema>;
+
+

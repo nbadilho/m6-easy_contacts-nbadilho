@@ -6,6 +6,7 @@ import {
   DivBts,
   BtnNo,
   BtnYes,
+  ErrorText,
 } from "./style";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { useState, useEffect } from "react";
@@ -18,6 +19,13 @@ import { toast } from "react-toastify";
 
 interface iProp {
   close(item: boolean): void;
+}
+
+interface Data {
+  name: string | "";
+  email: string | "";
+  password: string | "";
+  phone: string | "";
 }
 
 export function RenderPatchUser({ close }: iProp) {
@@ -48,7 +56,7 @@ export function RenderPatchUser({ close }: iProp) {
 
   function verifyError(message: any) {
     console.log(message);
-    if (message.message.includes("Email")) {
+    if (message.message.includes("E-mail")) {
       setErrorEmail(true);
     }
     if (message.message.includes("Phone")) {
@@ -56,11 +64,25 @@ export function RenderPatchUser({ close }: iProp) {
     }
   }
 
+  function filterData(obj: any) {
+    const asArray = Object.entries(obj);
+
+    const filtered = asArray.filter(([key, value]) => value !== "");
+    return Object.fromEntries(filtered);
+  }
+
   const submitPatch: SubmitHandler<UpdateUserInfo> = async (data) => {
     setLoading(true);
-    console.log(data);
+    const userTokenString = localStorage.getItem("@token_user");
+    const userToken = userTokenString ? JSON.parse(userTokenString) : null;
+    const newData = filterData(data);
+    console.log(newData);
     const patchUser = await api
-      .patch("/users", data)
+      .patch("/users", newData, {
+        headers: {
+          Authorization: `Bearer ${userToken}`,
+        },
+      })
       .then(() => {
         setLoading(false);
         notifySucess();
@@ -89,7 +111,9 @@ export function RenderPatchUser({ close }: iProp) {
             placeholder="Nome..."
             {...register("name")}
           />
-          {errors.name?.message ? <p>{errors.name.message}</p> : null}
+          {errors.name?.message ? (
+            <ErrorText>{errors.name.message}</ErrorText>
+          ) : null}
           <label htmlFor="email">Email</label>
           <input
             type="email"
@@ -102,8 +126,12 @@ export function RenderPatchUser({ close }: iProp) {
             }
             {...register("email")}
           />
-          {errorEmail == true ? <p>Email já existente</p> : null}
-          {errors.email?.message ? <p>{errors.email.message}</p> : null}
+          {errorEmail == true ? (
+            <ErrorText>Email já existente</ErrorText>
+          ) : null}
+          {errors.email?.message ? (
+            <ErrorText>{errors.email.message}</ErrorText>
+          ) : null}
           <label htmlFor="password">Senha</label>
           <input
             type="password"
@@ -111,7 +139,9 @@ export function RenderPatchUser({ close }: iProp) {
             placeholder="Senha..."
             {...register("password")}
           />
-          {errors.password?.message ? <p>{errors.password.message}</p> : null}
+          {errors.password?.message ? (
+            <ErrorText>{errors.password.message}</ErrorText>
+          ) : null}
           <label htmlFor="phone">Telefone</label>
           <input
             type="number"
@@ -123,8 +153,12 @@ export function RenderPatchUser({ close }: iProp) {
                 : () => setErrorMsg(false)
             }
           />
-          {errorPhone == true ? <p>Telefone já existente</p> : null}
-          {errors.phone?.message ? <p>{errors.phone.message}</p> : null}
+          {errorPhone == true ? (
+            <ErrorText>Telefone já existente</ErrorText>
+          ) : null}
+          {errors.phone?.message ? (
+            <ErrorText>{errors.phone.message}</ErrorText>
+          ) : null}
           <DivBts>
             <BtnNo>Cancelar</BtnNo>
             <BtnYes type="submit" disabled={loading}>
