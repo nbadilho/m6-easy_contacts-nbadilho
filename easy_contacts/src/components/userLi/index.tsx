@@ -3,8 +3,24 @@ import { MdOutlineModeEditOutline } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
 import { UserItem, DivBtsItem, ItemPhone, CircleLetter } from "./style";
 
-export function UserItemLi({ user, remove, edit, open, item }) {
-  function filterPhone(number) {
+interface User {
+  name: string;
+  email: string;
+  phone: string;
+  id: number;
+  createdAt: string;
+}
+
+interface iProp {
+  remove(item: boolean): void;
+  edit(item: boolean): void;
+  open(item: boolean): void;
+  item(item: User): void;
+  user: User;
+}
+
+export function UserItemLi({ user, remove, edit, open, item }: iProp) {
+  function filterPhone(number: string) {
     const numberLength = number.length;
     let newPhone = "";
     if (numberLength === 8) {

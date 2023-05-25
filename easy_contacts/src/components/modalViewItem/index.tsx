@@ -4,8 +4,21 @@ import { AiOutlineCloseCircle } from "react-icons/ai";
 import { BsFillTelephoneFill } from "react-icons/bs";
 import { HiOutlineMail } from "react-icons/hi";
 
-export function RenderViewItem({ close, item }) {
-  function filterPhone(number) {
+interface Item {
+  name: string;
+  email: string;
+  phone: string;
+  id: number;
+  createdAt: string;
+}
+
+interface iProp {
+  close(item: boolean): void;
+  item: Item;
+}
+
+export function RenderViewItem({ close, item }: iProp) {
+  function filterPhone(number: string) {
     const numberLength = number.length;
     let newPhone = "";
     if (numberLength === 8) {

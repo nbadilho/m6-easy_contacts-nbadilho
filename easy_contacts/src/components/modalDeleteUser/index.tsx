@@ -6,7 +6,10 @@ import { ColorRing } from "react-loader-spinner";
 import { useNavigate } from "react-router-dom";
 import { api } from "../../services/api";
 
-export function RenderDeleteUser({ close }) {
+interface iProp {
+  close(item: boolean): void;
+}
+export function RenderDeleteUser({ close }: iProp) {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -24,10 +27,12 @@ export function RenderDeleteUser({ close }) {
         navigate("/");
       })
       .catch((response) => {
+        setLoading(false);
         console.log(response);
       });
   }
   function deleteUser() {
+    setLoading(true);
     removeUser();
   }
 
@@ -48,7 +53,11 @@ export function RenderDeleteUser({ close }) {
           <BtnNo onClick={() => close(false)}>Não</BtnNo>
           <BtnYes onClick={() => deleteUser()} disabled={loading}>
             {loading ? (
-              <ColorRing colors={["white"]} height="25px" width="25px" />
+              <ColorRing
+                colors={["#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF", "#FFFFFF"]}
+                height="15px"
+                width="15px"
+              />
             ) : (
               "Sim"
             )}

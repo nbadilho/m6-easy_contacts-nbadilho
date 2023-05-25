@@ -1,10 +1,21 @@
 import styled from "styled-components";
 
-export const DivCircleLetter = styled.div`
+export const CircleLetter = styled.button`
   background-color: red;
-  padding: 8px 13px;
+  opacity: 0.8;
+  padding: 6px 10px;
   border-radius: 100%;
   color: white;
+  border: 0px solid;
+  font-weight: 600;
+  font-size: var(--font-size-16);
+  &:hover {
+    cursor: pointer;
+    opacity: 1;
+  }
+  @media (min-width: 740px) {
+    padding: 8px 15px;
+  }
 `;
 export const DivBtsItem = styled.div`
   gap: 10px;
@@ -18,7 +29,7 @@ export const DivBtsItem = styled.div`
     background-color: transparent;
   }
   & > button:hover {
-    border: 2px solid #97a9f0 ;
+    border: 2px solid #97a9f0;
     transition: 0.2s;
   }
 `;
@@ -32,13 +43,7 @@ export const ContactItem = styled.li`
   padding: 18px 24px;
   border: 2px solid transparent;
 
-  & > a {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  & > a > div {
+  & > div {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -56,9 +61,7 @@ export const ContactItem = styled.li`
   }
 `;
 
-
-
 export const ItemPhone = styled.p`
-font-size: var(--font-size-12);
-color: #97a9f0;
+  font-size: var(--font-size-12);
+  color: #97a9f0;
 `;

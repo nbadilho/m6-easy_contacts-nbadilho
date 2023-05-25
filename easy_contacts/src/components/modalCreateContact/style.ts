@@ -150,3 +150,9 @@ export const BtnYes = styled.button`
     font-size: var(--font-size-16);
   }
 `;
+
+export const ErrorText = styled.p`
+  color: red;
+  padding-left: 10px;
+  font-size: 11px;
+`;

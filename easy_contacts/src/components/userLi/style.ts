@@ -12,8 +12,6 @@ export const UserItem = styled.li`
   & > div {
     width: 100%;
     display: flex;
-    /* align-items: center;
-    justify-content: space-between; */
     gap: 10px;
     color: var(--color-purple);
     font-weight: 600;
@@ -30,7 +28,7 @@ export const UserItem = styled.li`
 export const CircleLetter = styled.button`
   background-color: red;
   opacity: 0.8;
-  padding: 8px 13px;
+  padding: 6px 10px;
   border-radius: 100%;
   color: white;
   border: 0px solid;
@@ -39,6 +37,9 @@ export const CircleLetter = styled.button`
   &:hover {
     cursor: pointer;
     opacity: 1;
+  }
+  @media (min-width: 740px) {
+    padding: 8px 15px;
   }
 `;
 export const DivBtsItem = styled.div`

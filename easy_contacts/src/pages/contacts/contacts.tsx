@@ -12,8 +12,7 @@ import {
 import { IoMdAdd } from "react-icons/io";
 import { UserItemLi } from "../../components/userLi";
 import { ContactItemLi } from "../../components/contactLi";
-import { useState, useEffect, useContext } from "react";
-import { RenderModal } from "../../components/modal";
+import { useState, useEffect } from "react";
 import { RenderDeleteUser } from "../../components/modalDeleteUser";
 import { RenderDeleteContact } from "../../components/modalDeleteContact";
 import { RenderViewItem } from "../../components/modalViewItem";
@@ -21,6 +20,15 @@ import { RenderCreateContact } from "../../components/modalCreateContact";
 import { RenderPatchContact } from "../../components/modalPatchContact";
 import { RenderPatchUser } from "../../components/modalPatchUser";
 import { api } from "../../services/api";
+import { useNavigate } from "react-router-dom";
+
+interface User {
+  name: string;
+  email: string;
+  phone: string;
+  id: number;
+  createdAt: string;
+}
 
 export function ContactsHome() {
   const [modalDeleteUser, setModalDeleteUser] = useState(false);
@@ -30,8 +38,9 @@ export function ContactsHome() {
   const [modalEditContact, setModalEditContact] = useState(false);
   const [modalEditUser, setModalEditUser] = useState(false);
   const [contacts, setContacts] = useState([]);
-  const [infoUser, setInfoUser] = useState({});
-  const [itemView, setItemView] = useState({});
+  const [infoUser, setInfoUser] = useState<any>({});
+  const [itemView, setItemView] = useState<any>({});
+  const navigate = useNavigate();
 
   async function getContacts() {
     const userTokenString = localStorage.getItem("@token_user");
@@ -71,16 +80,30 @@ export function ContactsHome() {
     getUser();
   }, []);
 
+  function exit() {
+    localStorage.removeItem("@token_user");
+    navigate("/");
+  }
+
   return (
     <MainContacts>
       {modalDeleteUser ? <RenderDeleteUser close={setModalDeleteUser} /> : null}
-      {modalDeleteContact ? <RenderDeleteContact /> : null}
+      {modalDeleteContact ? (
+        <RenderDeleteContact
+          close={setModalDeleteContact}
+          getContacts={getContacts}
+          item={itemView}
+        />
+      ) : null}
       {modal ? <RenderViewItem close={setModal} item={itemView} /> : null}
       {modalCreateContact ? (
-        <RenderCreateContact setModalCreateContact={setModalCreateContact} />
+        <RenderCreateContact
+          setModalCreateContact={setModalCreateContact}
+          updateContacts={getContacts}
+        />
       ) : null}
       {modalEditContact ? <RenderPatchContact /> : null}
-      {modalEditUser ? <RenderPatchUser /> : null}
+      {modalEditUser ? <RenderPatchUser close={setModalEditUser} /> : null}
 
       <header>
         <DivHeader>
@@ -97,7 +120,7 @@ export function ContactsHome() {
             <button onClick={() => setModalCreateContact(true)}>
               <IoMdAdd size="30px" color="#7790f1" />
             </button>
-            <button>
+            <button onClick={() => exit()}>
               <IoMdExit size="29px" color="#7790f1" />
             </button>
           </DivBtsMain>
@@ -117,7 +140,14 @@ export function ContactsHome() {
               <p>Você ainda não possui nenhum contato</p>
             </EmptyItem>
           ) : (
-            contacts.map((obj) => <ContactItemLi contact={obj} />)
+            contacts.map((obj) => (
+              <ContactItemLi
+                contact={obj}
+                open={setModal}
+                item={setItemView}
+                remove={setModalDeleteContact}
+              />
+            ))
           )}
         </ListContacts>
       </DivMainContent>
