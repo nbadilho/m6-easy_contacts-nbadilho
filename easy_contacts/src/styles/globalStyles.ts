@@ -1,7 +1,5 @@
 import { createGlobalStyle } from "styled-components";
 
-
-
 export const GlobalStyle = createGlobalStyle`
 
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
@@ -45,6 +43,7 @@ font-family: 'Noto Sans', sans-serif;
         --color-secondary-20:#a5cfcf;
         --color-tertiary-20:#e6fffd67;
         --color-tertiary: #E3F4F4;
+        --color-variation-blue:#bae2e2;
         --color-purple:#75135dba;
         --color-grey100: #333333;
         --color-grey50: #828282;

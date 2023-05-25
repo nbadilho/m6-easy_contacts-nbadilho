@@ -13,16 +13,19 @@ export const MainContacts = styled.main`
   font-family: "Noto Sans", sans-serif;
 
   > header {
-    width: 100vw;
+    width: 100%;
+    max-height: 13vh;
+    height: 13vh;
   }
 `;
 
 export const DivHeader = styled.div`
   background-image: url(${purple});
-  height: 80px;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  max-width: 100vw;
 `;
 
 export const DivMainContent = styled.div`
@@ -40,6 +43,8 @@ export const DivMainContent = styled.div`
     padding: 20px;
     align-items: center;
     justify-content: space-between;
+    height: 15vh;
+    max-height: 15vh;
   }
 
   @media (min-width: 700px) {
@@ -90,96 +95,22 @@ export const ListContacts = styled.ul`
   justify-content: center;
   align-items: flex-start;
   gap: 10px;
+  padding-bottom: 16px;
   @media (min-width: 700px) {
     width: 85%;
   }
 `;
 
-export const UserItem = styled.li`
-  background-color: var(--color-secondary);
+export const EmptyItem = styled.li`
+  text-align: center;
+  padding: 10px;
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 18px 24px;
-  border: 2px solid transparent;
-
-  & > a {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  & > a > div {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-    color: var(--color-purple);
-    font-weight: 600;
-  }
-  &:hover {
-    border: 2px solid var(--color-primary-200);
-    background-color: var(--color-primary);
-    cursor: pointer;
-  }
+  margin-top: 15%;
+  color: var(--color-grey20);
+  font-size: var(--font-size-18);
   @media (min-width: 700px) {
-    padding: 18px;
-  }
-`;
+    margin-top: 10%;
 
-export const DivCircleLetter = styled.div`
-  background-color: red;
-  padding: 8px 13px;
-  border-radius: 100%;
-  color: white;
-`;
-export const DivBtsItem = styled.div`
-  gap: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  & > button {
-    outline: none;
-    padding: 2px 6px;
-    border: 2px solid transparent;
-    background-color: transparent;
-  }
-  & > button:hover {
-    border: 2px solid var(--color-purple);
-    transition: 0.2s;
-  }
-`;
-
-export const ContactItem = styled.li`
-  background-color: var(--color-tertiary);
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 18px 24px;
-  border: 2px solid transparent;
-
-  & > a {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  & > a > div {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-    color: var(--color-purple);
-    font-weight: 600;
-  }
-  &:hover {
-    border: 2px solid var(--color-secondary);
-    background-color: var(--color-secondary-10);
-    cursor: pointer;
-  }
-  @media (min-width: 700px) {
-    padding: 18px;
+    font-size: var(--font-size-20);
   }
 `;
