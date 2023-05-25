@@ -41,6 +41,7 @@ font-family: 'Noto Sans', sans-serif;
         --color-primary-70:#ACBCFF;
         --color-primary-200:#7790f1;
         --color-secondary:#D2E9E9;
+        --color-secondary-10:#e0f8f8;
         --color-secondary-20:#a5cfcf;
         --color-tertiary-20:#e6fffd67;
         --color-tertiary: #E3F4F4;
