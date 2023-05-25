@@ -15,14 +15,20 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { api } from "../../services/api";
 import { ColorRing } from "react-loader-spinner";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../contexts/AuthContex";
 
 export function Login() {
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState(false);
   const [errorLogin, setErrorLogin] = useState(false);
   const navigate = useNavigate();
+  const { autoLogin } = useContext(AuthContext);
+
+  useEffect(() => {
+    autoLogin();
+  }, []);
 
   useEffect(() => {
     setErrorLogin(false);

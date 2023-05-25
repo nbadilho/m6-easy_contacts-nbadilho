@@ -2,6 +2,7 @@ import { ToastContainer,toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { GlobalStyle } from "./styles/globalStyles"
 import { RoutesMain } from "./routes/routes"
+import { AuthContextProvider } from "./contexts/AuthContex";
 
 function App() {
   return (
@@ -19,7 +20,8 @@ function App() {
         pauseOnHover
         theme="light"
       />
-      <RoutesMain/>
+      <AuthContextProvider><RoutesMain/></AuthContextProvider>
+      
     </>
   )
 }
