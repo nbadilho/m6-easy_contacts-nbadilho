@@ -27,13 +27,9 @@ interface User {
 
 interface iProp {
   setModalCreateContact: (item: boolean) => void;
-  updateContacts: () => void;
 }
 
-export function RenderCreateContact({
-  setModalCreateContact,
-  updateContacts,
-}: iProp) {
+export function RenderCreateContact({ setModalCreateContact }: iProp) {
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState(false);
 
@@ -65,7 +61,6 @@ export function RenderCreateContact({
       .then(() => {
         setModalCreateContact(false);
         notifySucess();
-        updateContacts();
       })
       .catch((response) => {
         setLoading(false);

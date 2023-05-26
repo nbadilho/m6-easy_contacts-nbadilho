@@ -16,9 +16,10 @@ interface iProp {
   open(item: boolean): void;
   item(item: Contact): void;
   remove(item: boolean): void;
+  edit(item: boolean): void;
 }
 
-export function ContactItemLi({ contact, open, item, remove }: iProp) {
+export function ContactItemLi({ contact, open, item, remove, edit }: iProp) {
   function filterPhone(number: string) {
     const numberLength = number.length;
     let newPhone = "";
@@ -67,7 +68,12 @@ export function ContactItemLi({ contact, open, item, remove }: iProp) {
         </div>
       </div>
       <DivBtsItem>
-        <button>
+        <button
+          onClick={() => {
+            item(contact);
+            edit(true);
+          }}
+        >
           {" "}
           <MdOutlineModeEditOutline size="26px" color="#97a9f0 " />
         </button>

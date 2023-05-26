@@ -1,15 +1,20 @@
 import * as z from "zod";
 
+
 export const contact = z.object({
-  name: z.string().max(45).nonempty("Nome é obrigatório"),
-  email: z.string().email("Email é obrigatório").max(45),
+  name: z.string().max(45).optional().or(z.literal("")),
+  email: z
+    .string()
+    .email("Formato válido de email obrigatório")
+    .max(45)
+    .optional()
+    .or(z.literal("")),
   phone: z
     .string()
-    .nonempty("Telefone é obrigatório")
     .min(8, "É necessário pelo menos 8 caracteres para o telefone")
-    .max(13, "O telefone deve ter no máximo 13 caracteres"),
+    .max(13, "O telefone deve ter no máximo 13 caracteres")
+    .optional()
+    .or(z.literal("")),
 });
 
-export const patchContact=contact.partial();
-
-export type UpdateContactInfo = z.infer<typeof patchContact>;
+export type UpdateContactInfo = z.infer<typeof contact>;

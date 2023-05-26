@@ -21,13 +21,6 @@ interface iProp {
   close(item: boolean): void;
 }
 
-interface Data {
-  name: string | "";
-  email: string | "";
-  password: string | "";
-  phone: string | "";
-}
-
 export function RenderPatchUser({ close }: iProp) {
   const [loading, setLoading] = useState(false);
   const [errorPhone, setErrorPhone] = useState(false);
@@ -160,7 +153,7 @@ export function RenderPatchUser({ close }: iProp) {
             <ErrorText>{errors.phone.message}</ErrorText>
           ) : null}
           <DivBts>
-            <BtnNo>Cancelar</BtnNo>
+            <BtnNo onClick={() => close(false)}>Cancelar</BtnNo>
             <BtnYes type="submit" disabled={loading}>
               {" "}
               {loading ? (

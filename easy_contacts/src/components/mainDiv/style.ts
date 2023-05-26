@@ -4,6 +4,7 @@ export const MainDiv = styled.main`
   width: 100%;
   min-width: 100%;
   min-height: 100vh;
+  height: max-content;
   background-color: var(--color-primary);
   display: flex;
   align-items: center;
@@ -26,7 +27,6 @@ export const MainDiv = styled.main`
   @media (min-width: 740px) {
     > div {
       flex-direction: row;
-
     }
     > div > div {
       min-height: 100vh;
@@ -34,4 +34,3 @@ export const MainDiv = styled.main`
     }
   }
 `;
-

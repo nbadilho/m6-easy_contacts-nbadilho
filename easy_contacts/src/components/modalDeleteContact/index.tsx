@@ -17,11 +17,10 @@ interface Item {
 
 interface iProp {
   close(item: boolean): void;
-  getContacts: () => void;
   item: Item;
 }
 
-export function RenderDeleteContact({ close, getContacts, item }: iProp) {
+export function RenderDeleteContact({ close, item }: iProp) {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -37,7 +36,6 @@ export function RenderDeleteContact({ close, getContacts, item }: iProp) {
       .then((response) => {
         notifySucess();
         setLoading(false);
-        getContacts();
         close(false);
       })
       .catch((response) => {

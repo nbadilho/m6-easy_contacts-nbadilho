@@ -38,8 +38,8 @@ export function ContactsHome() {
   const [modalEditContact, setModalEditContact] = useState(false);
   const [modalEditUser, setModalEditUser] = useState(false);
   const [contacts, setContacts] = useState([]);
-  const [infoUser, setInfoUser] = useState<any>({});
-  const [itemView, setItemView] = useState<any>({});
+  const [infoUser, setInfoUser] = useState<User>({} as User);
+  const [itemView, setItemView] = useState<User>({} as User);
   const navigate = useNavigate();
 
   async function getContacts() {
@@ -61,6 +61,7 @@ export function ContactsHome() {
   async function getUser() {
     const userTokenString = localStorage.getItem("@token_user");
     const userToken = userTokenString ? JSON.parse(userTokenString) : null;
+
     const infoUser = await api
       .get("/users", {
         headers: {
@@ -83,6 +84,11 @@ export function ContactsHome() {
   useEffect(() => {
     getUser();
   }, [modalEditUser]);
+
+  useEffect(() => {
+    getContacts();
+  }, [modalEditContact, modalCreateContact, modalDeleteContact]);
+
   function exit() {
     localStorage.removeItem("@token_user");
     navigate("/");
@@ -92,20 +98,15 @@ export function ContactsHome() {
     <MainContacts>
       {modalDeleteUser ? <RenderDeleteUser close={setModalDeleteUser} /> : null}
       {modalDeleteContact ? (
-        <RenderDeleteContact
-          close={setModalDeleteContact}
-          getContacts={getContacts}
-          item={itemView}
-        />
+        <RenderDeleteContact close={setModalDeleteContact} item={itemView} />
       ) : null}
       {modal ? <RenderViewItem close={setModal} item={itemView} /> : null}
       {modalCreateContact ? (
-        <RenderCreateContact
-          setModalCreateContact={setModalCreateContact}
-          updateContacts={getContacts}
-        />
+        <RenderCreateContact setModalCreateContact={setModalCreateContact} />
       ) : null}
-      {modalEditContact ? <RenderPatchContact /> : null}
+      {modalEditContact ? (
+        <RenderPatchContact close={setModalEditContact} item={itemView} />
+      ) : null}
       {modalEditUser ? <RenderPatchUser close={setModalEditUser} /> : null}
 
       <header>
@@ -149,6 +150,7 @@ export function ContactsHome() {
                 open={setModal}
                 item={setItemView}
                 remove={setModalDeleteContact}
+                edit={setModalEditContact}
               />
             ))
           )}
